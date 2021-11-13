@@ -66,7 +66,9 @@ def main():
     """Main method of program"""
     args = parse_args()
     for record in args.input_gtf.all_features():
-        print(record)
+        # exclude RefSeq as genes don't have transcripts
+        if record.source != "RefSeq":
+            print(record)
 
 
 if __name__ == "__main__":
